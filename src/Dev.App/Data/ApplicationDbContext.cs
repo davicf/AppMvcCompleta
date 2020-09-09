@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Dev.App.ViewModels;
 
 namespace Dev.App.Data
 {
@@ -11,6 +9,7 @@ namespace Dev.App.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
+        }        
+        public DbSet<Dev.App.ViewModels.ProdutoViewModel> ProdutoViewModel { get; set; }
     }
 }
