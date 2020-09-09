@@ -10,6 +10,7 @@ using Dev.Data.Context;
 using Microsoft.AspNetCore.Http;
 using Dev.Business.Interfaces;
 using Dev.Data.Repository;
+using AutoMapper;
 
 namespace Dev.App
 {
@@ -41,6 +42,10 @@ namespace Dev.App
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddMvc();
 
             services.AddScoped<MeuDbContext>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
