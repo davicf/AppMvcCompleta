@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Dev.Data\Dev.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\imagens\" />
+  </ItemGroup>
+
 </Project>
