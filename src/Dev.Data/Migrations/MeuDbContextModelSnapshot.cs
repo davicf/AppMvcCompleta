@@ -37,8 +37,7 @@ namespace Dev.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Complemento")
-                        .IsRequired()
+                    b.Property<string>("Complemento")                        
                         .HasColumnType("varchar(250)");
 
                     b.Property<string>("Estado")

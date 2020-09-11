@@ -30,7 +30,7 @@ namespace Dev.Data.Migrations
                     FornecedorId = table.Column<Guid>(nullable: false),
                     Logradouro = table.Column<string>(type: "varchar(200)", nullable: false),
                     Numero = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Complemento = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Complemento = table.Column<string>(type: "varchar(250)", nullable: true),
                     Cep = table.Column<string>(type: "varchar(8)", nullable: false),
                     Bairro = table.Column<string>(type: "varchar(100)", nullable: false),
                     Cidade = table.Column<string>(type: "varchar(100)", nullable: false),
