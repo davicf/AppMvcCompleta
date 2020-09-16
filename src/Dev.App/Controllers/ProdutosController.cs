@@ -14,16 +14,20 @@ namespace Dev.App.Controllers
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
-        private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IFornecedorRepository _fornecedorRepository;       
         private readonly IMapper _mapper;
-                
+        private readonly IProdutoService _produtoService;
+
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IFornecedorRepository fornecedorRepository,
-                                  IMapper mapper)
+                                  IMapper mapper,
+                                  IProdutoService produtoService,
+                                  INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
+            _produtoService = produtoService;
         }
 
         [Route("lista-de-produtos")]
@@ -73,7 +77,10 @@ namespace Dev.App.Controllers
             }
 
             produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
-            await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+
+            if (!OperacaoValida())
+                return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -106,7 +113,10 @@ namespace Dev.App.Controllers
                 return View(produtoViewModel);               
             }
 
-            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+            if (!OperacaoValida())
+                return View(produtoViewModel);
+
+            await _produtoService.Atualizar(_mapper.Map<Produto>(produtoViewModel));
 
             return RedirectToAction(nameof(Index));
         }
@@ -136,7 +146,12 @@ namespace Dev.App.Controllers
                 return NotFound();
             }
 
-            await _produtoRepository.Remover(id);
+            await _produtoService.Remover(id);
+
+            if (!OperacaoValida())
+                return View(produto);
+
+            TempData["Sucesso"] = "Produto excluido com sucesso!";
 
             return RedirectToAction(nameof(Index));
         }
