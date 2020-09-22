@@ -21,6 +21,8 @@ namespace Dev.App.Configurations
                 o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "Este campo precisa ser preenchido.");
             });
 
+            services.AddRazorPages();
+
             return services;
         }
     }

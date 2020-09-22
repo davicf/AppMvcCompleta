@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Dev.App.ViewModels;
 
 namespace Dev.App.Data
 {
@@ -10,6 +9,5 @@ namespace Dev.App.Data
             : base(options)
         {
         }        
-        public DbSet<Dev.App.ViewModels.ProdutoViewModel> ProdutoViewModel { get; set; }
     }
 }

@@ -25,10 +25,7 @@ namespace Dev.App
 
             services.AddDbContext<MeuDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddControllersWithViews();
-            services.AddRazorPages();
-
+              
             services.AddAutoMapper(typeof(Startup));
 
             services.AddMvcConfiguration();
